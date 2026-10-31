@@ -91,6 +91,8 @@ android {
         }
         register("aaos") {
             dimension = "target"
+            // Keep Play automatic protection compatible without lowering a future upstream minimum.
+            minSdk = maxOf(libs.versions.android.minSdk.get().toInt(), libs.versions.android.aaosMinSdk.get().toInt())
             applicationId = aaosApplicationId
             versionNameSuffix = "-aaos"
             manifestPlaceholders["appLabel"] = aaosAppLabel

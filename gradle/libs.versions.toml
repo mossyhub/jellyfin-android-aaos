@@ -2,6 +2,7 @@
 # Android
 android-compileSdk = "37"
 android-minSdk = "23"
+android-aaosMinSdk = "24" # Owner-approved floor for Play automatic protection; mobile stays upstream.
 android-targetSdk = "36"
 
 # Plugins

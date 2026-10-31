@@ -80,6 +80,12 @@ SigningHelper.kt.
 
 ## SDK / VERSION
 Use upstream's version-catalog refs (`libs.versions.android.{compileSdk,minSdk,targetSdk}`).
+The owner-approved exception is an AAOS-only minimum-SDK floor: catalog key
+`android-aaosMinSdk = "24"`, applied in the `aaos` flavor as the maximum of
+upstream `android-minSdk` and this floor. Preserve this across upstream merges.
+The mobile flavor continues using upstream's minimum unchanged. Keep Play
+automatic protection enabled; do not lower a future upstream minimum to 24.
+Further compatibility-floor increases or Play protection changes require owner approval.
 Do not hardcode SDK levels. versionCode/Name come from `buildSrc/.../VersionUtils.kt`
 via the `JELLYFIN_VERSION` env var (`0.0.0-dev.N` → versionCode N). Do not change this.
 
@@ -96,3 +102,4 @@ via the `JELLYFIN_VERSION` env var (`0.0.0-dev.N` → versionCode N). Do not cha
       returns nothing; no CarUxRestrictions "block while moving" wiring re-added.
 - [ ] No leftover conflict markers (`git grep -nE '^(<<<<<<<|=======|>>>>>>>)'` = empty).
 - [ ] No hardcoded SDK ints reintroduced where upstream uses the catalog.
+- [ ] AAOS minimum is max(upstream minimum, catalog AAOS floor 24); mobile remains upstream.
